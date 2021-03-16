@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="icon" href="img/favicon.png">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <title>MidWife</title>
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+    <div id="side-bar"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow align-middle">
+                <button id="sidebarToggle" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="#">MidWife</a>
+                <ul class="navbar-nav ml-auto">
+                    <button id="logout" class="btn btn-link d-md-none rounded-circle mr-3" data-toggle="modal" data-target="#confirmLogout">
+                        <i class="fa fa-power-off"></i>
+                    </button>
+                </ul>
+            </nav>
+
+            <div class="container-fluid" id="my-details">
+                <div class="row">
+                    <a class="col-xl-3 col-md-6 mb-4" href="#" onclick="loadMyDetails()" style="text-decoration:none">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h5 font-weight-bold text-primary text-uppercase mb-1">My Details</div>
+                                        <div class="mb-0 font-weight-bold text-gray-800">View My Registration Details</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar-plus fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="container-fluid" id="all-details">
+                <div class="row">
+                    <a class="col-xl-3 col-md-6 mb-4" href="#" onclick="loadAllDetails()" style="text-decoration:none">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="h5 font-weight-bold text-success text-uppercase mb-1">All Registrations</div>
+                                        <div class="mb-0 font-weight-bold text-gray-800">View All Registration Details</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-eye fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="confirmLogout" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteLabel">Confirm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure to Logout ?
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <button data-dismiss="modal" class="btn btn-warning btn-user btn-block">
+                                    CANCEL
+                                </button>
+                            </div>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <button data-dismiss="modal" onclick="logout()" class="btn btn-danger btn-user btn-block">
+                                    YES
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="js/sb-admin-2.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/officer.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+<script>
+    $(function(){
+        var userType = localStorage.getItem("userType");
+
+        if (userType == 1) {
+            $('#my-details').hide();
+        } else {
+            $('#all-details').hide();
+        }
+        $("#side-bar").load("side-bar.html");
+    });
+</script>
+</body>
+</html>

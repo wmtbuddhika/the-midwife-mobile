@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html class="body-full-height">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+    <link rel="icon" href="img/favicon.png">
+
+    <title>Midwife</title>
+</head>
+
+<body>
+
+<div class="login-container lightmode">
+    <div class="login-box animated fadeInDown">
+        <div class="login-logo"></div>
+        <div class="login-body">
+            <div class="login-title"><strong>Log In</strong> to your account</div>
+            <form class="form-horizontal" id="main-form" method="post">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input name="nic" id="nic" type="text" class="form-control" placeholder="NIC"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input name="password" id="password" type="password" class="form-control" placeholder="Password"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <a href="#" class="btn btn-link btn-block" onclick="forgotPassword()">Forgot your password ?</a>
+                    </div>
+                    <div class="col-md-6">
+                        <button id="login-btn" class="btn btn-info btn-block">Log In</button>
+                    </div>
+                    <p id="er"></p>
+                </div>
+            </form>
+        </div>
+        <div class="login-footer">
+            <div class="pull-left">
+            </div>
+            <div class="pull-right">
+                &copy; 2020 - The Midwife
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
+<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+<script type="text/javascript" src="js/plugins/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
+<script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>
+<script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
+<script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
+<script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+<script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>
+<script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>
+<script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/plugins/moment.min.js"></script>
+<script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="js/settings.js"></script>
+<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="js/actions.js"></script>
+<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/plugins/select2/js/select2.full.min.js"></script>
+<script type="text/javascript" src="js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
+<script type="text/javascript" src="js/plugins/tagsinput/jquery.tagsinput.min.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-file-input.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/plugins/jquery-validation/jquery.validate.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/plugins/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="js/plugins/jstree/jstree.min.js"></script>
+<script type="text/javascript" src="js/demo_file_handling.js"></script>
+<script type="text/javascript" src="js/plugins/nvd3/lib/d3.v3.js"></script>
+<script type="text/javascript" src="js/plugins/nvd3/nv.d3.min.js"></script>
+<script type="text/javascript" src="js/demo_charts_nvd3.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+        app.initialize();
+
+        $('#login-btn').on('click', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: 'http://54.166.227.166:3000/auth/login', //54.166.227.166
+                data: JSON.stringify(getFormData($('#main-form'))),
+                method: 'post',
+                dataType: 'json',
+                crossDomain: true,
+
+                error: function(e) {
+                    if (e.status == 401) {
+                        swal ('Incorrect', 'Username or Password is Incorrect', 'error');
+                    }
+                },
+                success: function (r) {
+                    if (r.status) {
+                        let userType = r.data.user_type_id;
+                        localStorage.setItem("userType", userType);
+                        if (userType !== 1) {
+                            localStorage.setItem("userId", r.data.id);
+                        }
+                        window.location.href = 'home.html';
+                    }
+                }
+            });
+        });
+
+        function forgotPassword() {
+            swal({
+                icon: "warning",
+                title: "Confirmation",
+                text: 'Are you want to retrieve your password ? \n\n Please enter registered NIC No',
+                inputPlaceholder: "Please enter registered NIC No",
+                content: "input",
+                buttons: true,
+            }).then((value) => {
+                if (value != null) {
+                    sendEmail(value)
+                }
+            });
+        }
+
+        function sendEmail(value) {
+            $.ajax({
+                url: 'http://54.166.227.166:3000/auth/forgot',
+                data: JSON.stringify({'nic': value}),
+                method : 'post',
+                dataType: 'json',
+
+                error: function (e) {
+                    console.log(e);
+                },
+                success: function (r) {
+                    if (r.status) {
+                        swal("Request Sent", 'Please check your registered email', 'success');
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

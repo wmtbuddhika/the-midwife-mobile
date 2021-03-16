@@ -1,0 +1,39 @@
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="home.html">
+        <div class="sidebar-brand-icon">
+            <img src="img/favicon.png" height="40">
+        </div>
+    </a>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item" id="my-details">
+        <a class="nav-link" onclick="loadMyDetails()">
+            <i class="fas fa-calendar-plus"></i>
+            <span>My</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+
+    <li class="nav-item" id="all-details">
+        <a class="nav-link" onclick="loadAllDetails()">
+            <i class="fas fa-eye"></i>
+            <span>All</span>
+        </a>
+    </li>
+</ul>
+
+<script>
+    $(function(){
+        var userType = localStorage.getItem("userType");
+
+        if (userType == 1) {
+            $('#my-details').hide();
+        } else {
+            $('#all-details').hide();
+        }
+        $("#accordionSidebar").addClass("toggled");
+    });
+</script>

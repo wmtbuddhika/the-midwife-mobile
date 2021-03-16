@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="icon" href="img/favicon.png">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <title>MidWife</title>
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+    <div id="side-bar"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow align-middle">
+                <button id="sidebarToggle" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <h1 class="h3 mb-0 text-gray-800">All Registrations</h1>
+            </nav>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card shadow mb-4 col-xl-8 col-lg-6">
+                        <div class="card-header">
+                            Mothers
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" id="mothers">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>NIC No</th>
+                                        <th>View</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="all-mothers"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card shadow mb-4 col-xl-8 col-lg-6">
+                        <div class="card-header">
+                            Children
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive" id="children">
+                                <table class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Mother NIC No</th>
+                                        <th>View</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="all-children"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script src="js/sb-admin-2.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/officer.js"></script>
+
+<script>
+    $(function(){
+        $("#side-bar").load("side-bar.html");
+        getAllMothers();
+        getAllChildren();
+    });
+</script>
+</body>
+</html>

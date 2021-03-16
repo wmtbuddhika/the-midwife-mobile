@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/fontawesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/fontawesome-free/css/all.min.css">
+    <link rel="icon" href="img/favicon.png">
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <title>MidWife</title>
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+    <div id="side-bar"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow align-middle">
+                <button id="sidebarToggle" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <h1 class="h3 mb-0 text-gray-800">View Child Details</h1>
+            </nav>
+            <div class="card o-hidden border-0 shadow-lg">
+                <div class="card-body p-0">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <form class="user">
+
+                                    <div class="form-group">
+                                        <div class="mb-1 small font-weight-bold">First Name</div>
+                                        <input disabled type="text" class="form-control form-control-user" id="first_name" placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="mb-1 small font-weight-bold">Last Name</div>
+                                        <input disabled type="text" class="form-control form-control-user" id="last_name" placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="mb-1 small font-weight-bold">Date Of Birth</div>
+                                        <input disabled type="text" class="form-control form-control-user" id="date_of_birth" placeholder="">
+                                    </div>
+
+                                    <input type="hidden" id="mother_id">
+
+                                    <div class="form-group">
+                                        <div class="mb-1 small font-weight-bold">Mother Name</div>
+                                        <input disabled type="text" class="form-control form-control-user" id="mother_name" placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="mb-1 small font-weight-bold">Mobile Phone No</div>
+                                        <input disabled type="text" class="form-control form-control-user" id="mobile_phone_no" placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="mb-1 small font-weight-bold">Address</div>
+                                        <input disabled type="text" class="form-control form-control-user" id="address" placeholder="">
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-2 mb-sm-0">
+                                            <div class="mb-1 small font-weight-bold">View Location</div>
+                                            <button type="button" class="btn btn-info btn-user btn-block" onclick="viewLocation(event)">
+                                                VIEW
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script src="js/sb-admin-2.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/officer.js"></script>
+
+<script>
+    $(function(){
+        $("#side-bar").load("side-bar.html");
+        loadChildDetails();
+    });
+</script>
+</body>
+</html>
